@@ -71,6 +71,26 @@ p{margin:0}
   .hero .frame{padding-block:8px 40px}
 }
 
+
+/* LinkedIn-style profile header */
+.banner{position:relative;height:clamp(150px,21vw,360px);overflow:hidden;background:var(--bg-3)}
+.banner img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,16,21,.55),rgba(12,16,21,0) 55%)}
+.profile-body{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,340px);gap:12px clamp(24px,4vw,56px);align-items:start;padding-block:0 52px}
+.avatar{width:clamp(120px,13vw,180px);aspect-ratio:1/1;height:auto;border-radius:50%;object-fit:cover;border:5px solid var(--bg);margin-top:calc(clamp(120px,13vw,180px) * -0.5);position:relative;z-index:1;background:var(--bg-3)}
+.intro{padding-top:22px;min-width:0}
+.intro h1{font-size:clamp(2.6rem,5vw,4.4rem);font-weight:850;font-stretch:64%;line-height:.95}
+.headline{margin-top:10px;font-size:clamp(1.05rem,1.5vw,1.3rem);font-weight:600;line-height:1.35;max-width:46ch}
+.meta{margin-top:6px;color:var(--muted);font-size:.95rem}
+.lede{margin-top:16px;color:#C5CED6;max-width:62ch}
+.intro .links{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+.facts-card{margin:22px 0 0;padding:18px 20px;border:1px solid var(--line);border-radius:6px;background:var(--bg-2);display:grid;gap:12px}
+.facts-card dt{color:var(--muted);font-size:.8rem}
+.facts-card dd{margin:2px 0 0;font-size:.93rem;line-height:1.4}
+@media (max-width:1100px){.profile-body{grid-template-columns:auto minmax(0,1fr)}.facts-card{grid-column:1/-1}}
+@media (max-width:640px){.profile-body{grid-template-columns:1fr;gap:0}.intro{padding-top:12px}}
+.results .pos{font-size:clamp(1.9rem,2.6vw,2.6rem)}
+
 /* Results band */
 .results{background:var(--bg-2)}
 .results ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
@@ -203,29 +223,40 @@ dialog button{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right
 </header>
 
 <main id="top">
-  <section class="hero" aria-label="Introduction">
-    <img src="img/hero-upright.jpg" alt="Shantanu fitting a brake disc and hub to a Team Arion upright in the pit garage" width="2400" height="1600" fetchpriority="high">
-    <div class="frame">
-      <h1>Shantanu<br>Madavan</h1>
-      <p class="role">Motorsport engineer. Racecar chassis, suspension and vehicle dynamics.</p>
-      <p class="now">MSc Advanced Motorsport Engineering at Cranfield University. Former Formula Student captain, with race weekends in Indian F4, endurance and GT3.</p>
-      <div class="links">
-        <a class="btn solid" href="#experience">See my work</a>
-        <a class="btn line" href="https://www.linkedin.com/in/shantanu-madavan" target="_blank" rel="noopener">LinkedIn</a>
+  <section class="profile" aria-label="Introduction">
+    <div class="banner"><img src="img/banner.jpg" alt="Engineers preparing an F4 car on the grid at an Indian F4 race weekend" width="2400" height="667" fetchpriority="high"></div>
+    <div class="frame profile-body">
+      <img class="avatar" src="img/headshot.jpg" alt="Portrait of Shantanu Madavan" width="800" height="800">
+      <div class="intro">
+        <h1>Shantanu Madavan</h1>
+        <p class="headline">Motorsport engineer: racecar chassis, suspension and vehicle dynamics</p>
+        <p class="meta">Cranfield, United Kingdom. Open to UK motorsport roles from 2027.</p>
+        <p class="lede">MSc Advanced Motorsport Engineering student at Cranfield University and First Class mechanical engineering graduate. I captained a university Formula Student team to its best national result, and have worked race weekends in Formula 4, endurance racing and GT3.</p>
+        <div class="links">
+          <a class="btn solid" href="#experience">See my work</a>
+          <a class="btn line" href="https://www.linkedin.com/in/shantanu-madavan" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn line" href="#contact">Contact</a>
+        </div>
       </div>
+      <dl class="facts-card">
+        <div><dt>Studying</dt><dd>MSc Advanced Motorsport Engineering, Cranfield University, 2026–27</dd></div>
+        <div><dt>Most recent</dt><dd>CAD Lead, D&amp;O Motorsport</dd></div>
+        <div><dt>Focus</dt><dd>Chassis and suspension design, vehicle dynamics, race engineering</dd></div>
+        <div><dt>Right to work</dt><dd>UK Graduate visa from September 2027, no sponsorship needed</dd></div>
+      </dl>
     </div>
   </section>
 
-  <section class="results" aria-label="Key achievements">
+  <section class="results" aria-label="Highlights">
     <div class="livery"></div>
     <div class="frame">
       <ol>
-        <li><div class="pos num">AIR 11</div><b>Innovation Award, up from AIR 17</b><span>Supra SAEINDIA Formula Student, 2025</span></li>
-        <li><div class="pos num">Top 10</div><b>Mentored Arion to its first top 10</b><span>Supra SAEINDIA 2026. Overall Statics, Cost and Manufacturing wins</span></li>
-        <li><div class="pos num">5 + 1</div><b>Podiums and a win</b><span>Work placement, Indian F4 and IRL, 2024</span></li>
-        <li><div class="pos num">Top 30</div><b>International trainee selection</b><span>RGB Racing and United Motorsport Academy, 2025</span></li>
-        <li><div class="pos">Clean Pit</div><b>Award, as team captain</b><span>Supra SAEINDIA, 2024</span></li>
-        <li><div class="pos">Excellence</div><b>Student Excellence Award</b><span>NMIT, 2026</span></li>
+        <li><div class="pos num">11th</div><b>Formula Student India 2025, as team captain</b><span>Up from 17th, the team&#39;s best result in 13 years. Also won the Innovation Award</span></li>
+        <li><div class="pos num">Top 10</div><b>Formula Student India 2026, as mentor</b><span>The team&#39;s first top-10 finish, winning the static events overall</span></li>
+        <li><div class="pos num">5 podiums</div><b>Indian F4 and Indian Racing League, 2024</b><span>Work-placement engineer, including one race win</span></li>
+        <li><div class="pos num">Top 30</div><b>International selection, 2025</b><span>Engineering bootcamp with Porsche GT3 team RGB Racing, Spain</span></li>
+        <li><div class="pos num">4th</div><b>Sepang 1000 km endurance race, 2024</b><span>Class result as track-side engineer, DV Motorsport</span></li>
+        <li><div class="pos">First Class</div><b>B.E. Mechanical Engineering, 2026</b><span>With Distinction, CGPA 8.71/10</span></li>
       </ol>
     </div>
   </section>
@@ -235,22 +266,22 @@ dialog button{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right
       <div class="ch-head"><div><p class="kicker">Most recent first</p><h2>Experience</h2></div></div>
       <article class="role">
         <div class="role-head"><p class="when num">Dec 2025 – Aug 2026</p><div><h3>Design Engineering Intern, CAD Lead</h3><p class="co">D&amp;O Motorsport, Mumbai</p><p class="desc">Motorsport workshop and performance vehicle engineering, sister company of United Motorsport Academy</p></div></div>
-        <div class="ch-body"><div class="measure"><p>I led CAD on an in-house electric sports car. Project data stays with the client, so this entry has no images.</p></div><ul><li>Owned vehicle architecture, packaging and integration of the motor, gearbox, battery and cooling.</li><li>Built a global parametric CAD structure for fast iteration across vehicle variants.</li><li>Designed and built the chassis jig, and validated the structure with FEA across the main load cases.</li></ul></div>
-        
+        <div class="ch-body"><div class="measure"><p>I led CAD on an electric sports car. That project is under client confidentiality, so the images below show an in-house concept instead: a reimagined AC Cobra with a tubular spaceframe.</p></div><ul><li>Owned vehicle architecture, packaging and integration of the motor, gearbox, battery and cooling.</li><li>Built a global parametric CAD structure for fast iteration across vehicle variants.</li><li>Designed and built the chassis jig, and validated the structure with FEA across the main load cases.</li></ul></div>
+        <div class="mosaic"><figure class="c6"><button type="button" data-full="img/cobra-chassis.jpg"><img src="img/cobra-chassis.jpg" alt="Spaceframe chassis and seat packaged inside a Cobra-style body" loading="lazy"></button><figcaption>Concept spaceframe packaged inside the body</figcaption></figure><figure class="c6"><button type="button" data-full="img/cobra-side.jpg"><img src="img/cobra-side.jpg" alt="Side view of the Cobra-style concept body" loading="lazy"></button><figcaption>Cobra concept body</figcaption></figure></div>
       </article>
       <article class="role">
         <div class="role-head"><p class="when num">Feb 2025 – Aug 2026</p><div><h3>Part-time Engineer</h3><p class="co">Jetco Advanced Industries, Mumbai</p><p class="desc">Engineering start-up: pulsejet vehicle development, structural design and FEA services</p></div></div>
         <div class="ch-body"><div class="measure"><p>Hands-on development of a pulsejet-powered vehicle alongside structural analysis work for clients.</p></div><ul><li>Assembled, tested and operated a twin-pulsejet bike built on a KTM Duke 390 chassis.</li><li>Modelled an ISO tank container and set up its structural FEA load cases.</li><li>Audited a third-party FEA report and reviewed client drawings for feasibility.</li></ul></div>
-        <div class="mosaic"><figure class="c6"><button type="button" data-full="img/jet-bike.jpg"><img src="img/jet-bike.jpg" alt="Twin-pulsejet bike firing at night" loading="lazy"></button><figcaption>Pulsejet bike running at night</figcaption></figure><figure class="c6"><button type="button" data-full="img/jet-bike-day.jpg"><img src="img/jet-bike-day.jpg" alt="Shantanu with the pulsejet bike at an event ground" loading="lazy"></button><figcaption>Pulsejet bike at the event</figcaption></figure></div>
+        <div class="mosaic"><figure class="c6"><button type="button" data-full="img/jet-bike.jpg"><img src="img/jet-bike.jpg" alt="Twin-pulsejet bike firing at night" loading="lazy"></button><figcaption>Pulsejet bike running at night</figcaption></figure><figure class="c6"><button type="button" data-full="img/jet-bike-day.jpg"><img src="img/jet-bike-day.jpg" alt="Shantanu with the pulsejet bike at an event ground" loading="lazy"></button><figcaption>Pulsejet bike at the event</figcaption></figure><figure class="c6"><button type="button" data-full="img/iso-tank-iso.jpg"><img src="img/iso-tank-iso.jpg" alt="3D model of an ISO tank container in its frame" loading="lazy"></button><figcaption>ISO tank container model</figcaption></figure><figure class="c6"><button type="button" data-full="img/iso-tank-side.jpg"><img src="img/iso-tank-side.jpg" alt="Side view of the ISO tank container model" loading="lazy"></button><figcaption>ISO tank, side view</figcaption></figure></div>
       </article>
       <article class="role">
-        <div class="role-head"><p class="when num">Jan 2023 – Dec 2025</p><div><h3>Captain, Formula Student</h3><p class="co">Team Arion, NMIT, Bangalore</p><p class="desc">Combustion racecar team competing at Supra SAEINDIA and Formula Bharat</p></div></div>
-        <div class="ch-body"><div class="measure"><p>I joined on chassis design and rose to captain in 2023, leading a 50+ member, six-subsystem team. As CAD lead I directed vehicle dynamics and structures across three cars. National rank went from AIR 17 to AIR 11, the team&#39;s first top-11 finish in 13 years.</p></div><ul><li>Built equation-driven chassis, pullrod and upright assemblies.</li><li>Ran CAE and kinematics studies in ANSYS and OptimumK to set geometry and verify uprights and mounts.</li><li>Set up safety protocols and recruitment, and ran design, procurement and build to deadline.</li><li>Mentored the 2026 team to its first top 10: Overall Statics and Cost and Manufacturing wins, 3rd in Design.</li></ul></div>
-        <div class="mosaic"><figure class="c8"><button type="button" data-full="img/arion-paddock.jpg"><img src="img/arion-paddock.jpg" alt="Team Arion with car number 06 in a crowded paddock" loading="lazy"></button><figcaption>Paddock, Supra SAEINDIA 2025</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-sunset.jpg"><img style="object-position:50% 88%" src="img/arion-sunset.jpg" alt="The Arion car at sunset in front of the Buddh circuit grandstand" loading="lazy"></button><figcaption>Buddh International Circuit, 2025</figcaption></figure><figure class="c5 cad"><button type="button" data-full="img/cad-arion-car.jpg"><img src="img/cad-arion-car.jpg" alt="SolidWorks assembly of the Arion car" loading="lazy"></button><figcaption>Full vehicle assembly</figcaption></figure><figure class="c4 cad"><button type="button" data-full="img/fea-chassis.jpg"><img src="img/fea-chassis.jpg" alt="Structural FEA of the Arion spaceframe" loading="lazy"></button><figcaption>Spaceframe FEA</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-upright-disc.jpg"><img src="img/cad-upright-disc.jpg" alt="CAD of an upright with brake disc and calliper" loading="lazy"></button><figcaption>Upright, hub and brake</figcaption></figure><figure class="c3"><button type="button" data-full="img/cad-upright-wheel.jpg"><img src="img/cad-upright-wheel.jpg" alt="Upright packaged inside the wheel" loading="lazy"></button><figcaption>Upright packaged in the wheel</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-hub.jpg"><img src="img/cad-hub.jpg" alt="Hub CAD set up for simulation" loading="lazy"></button><figcaption>Hub set up for simulation</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-pedalbox.jpg"><img src="img/cad-pedalbox.jpg" alt="Pedal box CAD" loading="lazy"></button><figcaption>Pedal box</figcaption></figure><figure class="c3"><button type="button" data-full="img/arion-build.jpg"><img src="img/arion-build.jpg" alt="Shantanu working on the front suspension" loading="lazy"></button><figcaption>Suspension work in the pits</figcaption></figure><figure class="c4 cad"><button type="button" data-full="img/cad-frame.jpg"><img src="img/cad-frame.jpg" alt="CAD of the bare spaceframe" loading="lazy"></button><figcaption>Frame in CAD</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-frame.jpg"><img src="img/arion-frame.jpg" alt="Bare welded steel spaceframe" loading="lazy"></button><figcaption>The same frame, welded</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-cones.jpg"><img src="img/arion-cones.jpg" alt="Arion car on the autocross course" loading="lazy"></button><figcaption>Autocross, 2025</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-trophies.jpg"><img src="img/arion-trophies.jpg" alt="Trophies on the Arion nose cone" loading="lazy"></button><figcaption>2025 awards on the nose cone</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-buddh.jpg"><img style="object-position:50% 70%" src="img/arion-buddh.jpg" alt="The Arion car on track at Buddh" loading="lazy"></button><figcaption>On track, 2025</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-render.jpg"><img src="img/arion-render.jpg" alt="Render of the Arion car" loading="lazy"></button><figcaption>Car render</figcaption></figure><figure class="c12 cad"><button type="button" data-full="img/cad-arion-2026.jpg"><img src="img/cad-arion-2026.jpg" alt="Render of the 2026 Arion car with wings" loading="lazy"></button><figcaption>2026 car, the season I mentored</figcaption></figure></div>
+        <div class="role-head"><p class="when num">Jan 2023 – Dec 2025</p><div><h3>Captain, Formula Student</h3><p class="co">Team Arion, NMIT Bangalore</p><p class="desc">University Formula Student team designing and racing a combustion single-seater in Formula Student India (Supra SAEINDIA) and Formula Bharat</p></div></div>
+        <div class="ch-body"><div class="measure"><p>I joined on chassis design and rose to captain in 2023, leading a 50+ member, six-subsystem team. As CAD lead I directed vehicle dynamics and structures across three cars. The national ranking improved from 17th to 11th, the team&#39;s best result in its 13-year history, and the team won the Innovation Award.</p></div><ul><li>Built equation-driven chassis, pullrod and upright assemblies.</li><li>Ran CAE and kinematics studies in ANSYS and OptimumK to set geometry and verify uprights and mounts.</li><li>Set up safety protocols and recruitment, and ran design, procurement and build to deadline.</li><li>Mentored the 2026 team to its first top-10 finish: overall winner of the static events and of Cost and Manufacturing, 3rd in Design.</li></ul></div>
+        <div class="mosaic"><figure class="c8"><button type="button" data-full="img/arion-paddock.jpg"><img src="img/arion-paddock.jpg" alt="The team with car 06 in a crowded paddock" loading="lazy"></button><figcaption>Paddock, Formula Student India 2025</figcaption></figure><figure class="c4 m6"><button type="button" data-full="img/arion-sunset.jpg"><img style="object-position:50% 88%" src="img/arion-sunset.jpg" alt="The car at sunset in front of the Buddh circuit grandstand" loading="lazy"></button><figcaption>Buddh International Circuit, 2025</figcaption></figure><figure class="c6 cad"><button type="button" data-full="img/cad-2025.jpg"><img src="img/cad-2025.jpg" alt="SolidWorks assembly of the 2025 car" loading="lazy"></button><figcaption>2025 car, full SolidWorks assembly</figcaption></figure><figure class="c6 cad"><button type="button" data-full="img/cad-2026.jpg"><img src="img/cad-2026.jpg" alt="SolidWorks model of the 2026 car with wings" loading="lazy"></button><figcaption>2026 car, the season I mentored</figcaption></figure><figure class="c3"><button type="button" data-full="img/arion-build.jpg"><img src="img/arion-build.jpg" alt="Shantanu working on the front suspension" loading="lazy"></button><figcaption>Suspension work in the pits</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/fea-chassis.jpg"><img src="img/fea-chassis.jpg" alt="Structural FEA of the spaceframe" loading="lazy"></button><figcaption>Spaceframe FEA</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-upright-disc.jpg"><img src="img/cad-upright-disc.jpg" alt="CAD of an upright with brake disc and calliper" loading="lazy"></button><figcaption>Upright, hub and brake</figcaption></figure><figure class="c3"><button type="button" data-full="img/arion-frame.jpg"><img src="img/arion-frame.jpg" alt="Bare welded steel spaceframe" loading="lazy"></button><figcaption>Welded spaceframe</figcaption></figure><figure class="c3"><button type="button" data-full="img/arion-2024-team.jpg"><img src="img/arion-2024-team.jpg" alt="The team with the 2024 car at the circuit" loading="lazy"></button><figcaption>Team and the 2024 car, Formula Student India 2024</figcaption></figure><figure class="c3"><button type="button" data-full="img/arion-2024-pit.jpg"><img style="object-position:50% 70%" src="img/arion-2024-pit.jpg" alt="The 2024 car in the team pit box" loading="lazy"></button><figcaption>2024 car in the pit box</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-arion-car.jpg"><img src="img/cad-arion-car.jpg" alt="SolidWorks assembly of the 2024 car" loading="lazy"></button><figcaption>2024 car, SolidWorks assembly</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-frame.jpg"><img src="img/cad-frame.jpg" alt="SolidWorks model of the 2024 spaceframe" loading="lazy"></button><figcaption>2024 spaceframe, SolidWorks</figcaption></figure></div>
       </article>
       <article class="role">
         <div class="role-head"><p class="when num">Aug 2025 – Sep 2025</p><div><h3>Engineering Trainee</h3><p class="co">RGB Racing, Madrid</p><p class="desc">Porsche GT3 team in Porsche Supercup and Sprint Challenge Ibérica, via United Motorsport Academy</p></div></div>
-        <div class="ch-body"><div class="measure"><p>Selected in the top 30 internationally for the UMA Bootcamp with RGB Racing, training on Porsche 992 GT3 Cup and GT3 R systems and setup.</p></div><ul><li>Trained under ex-Porsche LMP1 race engineer Roberto Gómez Bueno on GT car systems and setup.</li><li>Analysed VBOX lap data at Barcelona and Navarra to isolate braking, gear and line losses between drivers.</li><li>Studied vehicle dynamics under F1 engineer José Santos and aerodynamics under Sauber&#39;s Alberto Maggioni.</li></ul></div>
+        <div class="ch-body"><div class="measure"><p>Selected in the top 30 internationally for United Motorsport Academy&#39;s engineering bootcamp with RGB Racing, training on Porsche 911 GT3 Cup and GT3 R systems and setup.</p></div><ul><li>Trained under ex-Porsche LMP1 race engineer Roberto Gómez Bueno on GT car systems and setup.</li><li>Analysed VBOX lap data at Barcelona and Navarra to isolate braking, gear and line losses between drivers.</li><li>Studied vehicle dynamics under F1 engineer José Santos and aerodynamics under Sauber&#39;s Alberto Maggioni.</li></ul></div>
         <div class="mosaic"><figure class="c6"><button type="button" data-full="img/rgb-gt3r.jpg"><img src="img/rgb-gt3r.jpg" alt="Trainees around a Porsche GT3 R in the RGB workshop" loading="lazy"></button><figcaption>Porsche GT3 R in the RGB workshop</figcaption></figure><figure class="c6"><button type="button" data-full="img/rgb-cockpit.jpg"><img src="img/rgb-cockpit.jpg" alt="Inside a Porsche GT3 cockpit" loading="lazy"></button><figcaption>GT3 cockpit and systems</figcaption></figure><figure class="c6"><button type="button" data-full="img/rgb-brake.jpg"><img src="img/rgb-brake.jpg" alt="Brake disc and hub on a Porsche GT3 on setup pads" loading="lazy"></button><figcaption>Corner on the setup pads</figcaption></figure><figure class="c6"><button type="button" data-full="img/rgb-workshop.jpg"><img src="img/rgb-workshop.jpg" alt="The RGB Racing workshop with GT3 cars" loading="lazy"></button><figcaption>RGB Racing workshop, Madrid</figcaption></figure></div>
       </article>
       <article class="role">
@@ -265,7 +296,7 @@ dialog button{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right
       </article>
       <article class="role">
         <div class="role-head"><p class="when num">Aug 2024 – Nov 2024</p><div><h3>Work-placement Engineer</h3><p class="co">Racing Promotions, Chennai</p><p class="desc">Promoter of the FIA-certified F4 Indian Championship and the Indian Racing League</p></div></div>
-        <div class="ch-body"><div class="measure"><p>Work placement through United Motorsport Academy across a five-weekend season, after completing the LIME 2.0 course.</p></div><ul><li>Prepared Mygale M21-F4 and Wolf GB08 Thunder cars that recorded 5 podiums and 1 win.</li><li>Suspension and aero setup, fault diagnosis and repairs between sessions alongside MP Motorsport engineers.</li><li>Analysed car and driver behaviour in MoTeC i2 and WinTAX to support setup changes.</li></ul></div>
+        <div class="ch-body"><div class="measure"><p>Work placement through United Motorsport Academy across a five-weekend season, after completing the LIME 2.0 motorsport engineering course.</p></div><ul><li>Prepared Mygale M21-F4 and Wolf GB08 Thunder cars that recorded 5 podiums and 1 win.</li><li>Suspension and aero setup, fault diagnosis and repairs between sessions alongside MP Motorsport engineers.</li><li>Analysed car and driver behaviour in MoTeC i2 and WinTAX to support setup changes.</li></ul></div>
         <div class="mosaic"><figure class="c8"><button type="button" data-full="img/f4-grid.jpg"><img src="img/f4-grid.jpg" alt="Engineers preparing the number 27 F4 car on the grid" loading="lazy"></button><figcaption>Grid prep, Indian F4</figcaption></figure><figure class="c4 m6"><button type="button" data-full="img/f4-corner.jpg"><img src="img/f4-corner.jpg" alt="Shantanu working on an F4 corner assembly" loading="lazy"></button><figcaption>Corner assembly</figcaption></figure><figure class="c6"><button type="button" data-full="img/f4-driver.jpg"><img src="img/f4-driver.jpg" alt="Driver debrief beside the F4 car" loading="lazy"></button><figcaption>Driver debrief, Indian F4</figcaption></figure><figure class="c6"><button type="button" data-full="img/lime-cert.jpg"><img src="img/lime-cert.jpg" alt="Shantanu receiving the LIME 2.0 certificate beside a single-seater" loading="lazy"></button><figcaption>LIME 2.0 with United Motorsport Academy, 2024</figcaption></figure></div>
       </article>
     </div>
@@ -279,7 +310,7 @@ dialog button{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right
           <li><b>Cranfield MSc, Motorsport Powertrains, 2026.</b> Developed naturally aspirated, turbocharged and hybrid 2.0 L competition engines in AVL CRUISE M from a single-cylinder model, working through intake and exhaust tuning, turbo matching and knock limits.</li>
         </ul>
         <ul>
-          <li><b>ISRO Robotics Challenge (IRoC-U), 2024.</b> Mechanical systems lead on a lunar rover with a tracked chassis and manipulator arm.</li>
+          <li><b>ISRO Robotics Challenge, 2024.</b> Mechanical systems lead on a lunar rover with a tracked chassis and manipulator arm.</li>
         </ul>
       </div>
       <div class="mosaic"><figure class="c7 cad"><button type="button" data-full="img/cranfield-ve.jpg"><img src="img/cranfield-ve.jpg" alt="Chart of volumetric efficiency by cylinder against engine speed" loading="lazy"></button><figcaption>Volumetric efficiency by cylinder, Cranfield powertrain coursework</figcaption></figure><figure class="c5 m6 cad"><button type="button" data-full="img/rover-arm.jpg"><img src="img/rover-arm.jpg" alt="CAD of the lunar rover manipulator arm" loading="lazy"></button><figcaption>Lunar rover manipulator arm</figcaption></figure></div>
@@ -304,16 +335,17 @@ dialog button{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right
           <div><dt>MSc Advanced Motorsport Engineering</dt><dd>Cranfield University, UK. 2026 to 2027</dd></div>
           <div><dt>B.E. Mechanical Engineering</dt><dd>NMIT, Bangalore. 2022 to 2026. CGPA 8.71/10, First Class with Distinction</dd></div>
           <div><dt>Final-year project</dt><dd>MOF-reinforced PLA composites for FDM 3D printing</dd></div>
+          <div><dt>Awards</dt><dd>Innovation Award, Formula Student India 2025 (team). Clean Pit Award, Formula Student India 2024 (team, as captain). Student Excellence Award, NMIT 2026</dd></div>
         </dl></div>
         <div class="col"><h3>Skills</h3><dl>
           <div><dt>Engineering</dt><dd>Chassis and suspension design, kinematics, structural FEA, CFD, DFMA, jig and fixture design</dd></div>
-          <div><dt>CAD and simulation</dt><dd>SolidWorks (CSWP), Fusion 360, 3DEXPERIENCE, Blender, CATIA V5. ANSYS, SolidWorks Simulation, ChassisSim, OptimumK, OptimumLap, AVL CRUISE M</dd></div>
+          <div><dt>CAD and simulation</dt><dd>SolidWorks (Certified Professional), Fusion 360, 3DEXPERIENCE, Blender, CATIA V5. ANSYS, SolidWorks Simulation, ChassisSim, OptimumK, OptimumLap, AVL CRUISE M</dd></div>
           <div><dt>Trackside and data</dt><dd>Car setup, fault diagnosis, debriefs, tyre and pit-stop procedures. Pi Toolbox, WinTAX, MoTeC i2, VBOX</dd></div>
         </dl></div>
         <div class="col"><h3>Certificates</h3><dl>
-          <div><dt>CSWP and CSWA, 2026</dt><dd>Certified SOLIDWORKS Professional and Associate</dd></div>
-          <div><dt>RGB Racing and UMA Bootcamp, 2025</dt></div>
-          <div><dt>LIME 2.0, 2024</dt><dd>University of Bedfordshire-certified</dd></div>
+          <div><dt>Certified SOLIDWORKS Professional and Associate, 2026</dt></div>
+          <div><dt>Engineering bootcamp, 2025</dt><dd>United Motorsport Academy with RGB Racing, Spain</dd></div>
+          <div><dt>LIME 2.0 motorsport engineering course, 2024</dt><dd>Certified by the University of Bedfordshire</dd></div>
           <div><dt>ISRO Robotics Challenge, 2024</dt><dd>Lunar rover, mechanical systems lead</dd></div>
           <div><dt>Languages</dt><dd>English, Hindi, Tamil, Kannada</dd></div>
         </dl></div>
