@@ -5,462 +5,329 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Shantanu Madavan</title>
 <meta name="description" content="Shantanu Madavan, motorsport engineer specialising in racecar chassis, suspension and vehicle dynamics. MSc Advanced Motorsport Engineering, Cranfield University.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap">
+<meta name="theme-color" content="#0C1015">
 <style>
 :root{padding-top:env(safe-area-inset-top,0px)}
 body{margin:0}
 
 @font-face{font-family:"Archivo Site";src:url("fonts/archivo-var.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
-/* Layout: paddock-sheet grid. Left-aligned, 1120px column; hero = copy | photo with broadcast-style timing tower;
-   work = metadata rail | narrative + figures; experience = LinkedIn-style list. */
+/* Pit-wall direction: deliberately single dark theme.
+   Layout: full-bleed photo hero, broadcast-style results band, then chapters.
+   Images run to a wide 1680px frame with fluid gutters; running text is capped near 66ch. */
 :root{
-  --paper:#ECEFF2; --surface:#FFFFFF; --ink:#16202B; --muted:#56616E; --line:#CDD4DB;
-  --accent:#0A7C75; --accent-soft:#D5ECEA; --signal:#F2B705;
-  --tower:#0F161E; --tower-ink:#F3F6F8; --tower-muted:#9AA7B4;
-  --display:"Archivo Site","Archivo","Arial Narrow",Arial,sans-serif;
-  --body:"Archivo Site","Archivo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  --w:1120px; --r:6px;
+  --bg:#0C1015; --bg-2:#121922; --bg-3:#18212C; --ink:#EEF2F5; --muted:#9AA6B2; --line:#25303C;
+  --teal:#35C2B4; --amber:#F2B705;
+  --display:"Archivo Site","Arial Narrow",Arial,sans-serif;
+  --body:"Archivo Site",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --wide:1680px; --gut:clamp(16px,4vw,72px);
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#0F151C; --surface:#17202A; --ink:#E5EAEE; --muted:#97A3AF; --line:#28333F;
-  --accent:#3EC3B6; --accent-soft:#16312F; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0F151C; --surface:#17202A; --ink:#E5EAEE; --muted:#97A3AF; --line:#28333F;
-  --accent:#3EC3B6; --accent-soft:#16312F; color-scheme:dark}
-
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;background:var(--bg)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
-  font-variation-settings:"wdth" 100;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
-a{color:var(--accent);text-underline-offset:3px}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:var(--teal);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 img{display:block;max-width:100%;height:auto}
-.wrap{max-width:var(--w);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--display);line-height:1.02;text-wrap:balance;margin:0}
-h2{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;font-variation-settings:"wdth" 70;letter-spacing:-.01em}
-h3{font-size:1.5rem;font-weight:750;font-variation-settings:"wdth" 80}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:.95;text-wrap:balance}
 p{margin:0}
 .num{font-variant-numeric:tabular-nums}
+.frame{max-width:var(--wide);margin:0 auto;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.measure{max-width:66ch}
 
-/* Top bar */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:24px;min-height:60px;flex-wrap:wrap}
-.brand{font-family:var(--display);font-weight:800;font-size:1.25rem;font-variation-settings:"wdth" 75;color:var(--ink);text-decoration:none;margin-right:auto}
-.nav{display:flex;gap:20px;flex-wrap:wrap}
+/* Livery stripe: Arion teal plus a timing-screen amber */
+.livery{height:5px;background:linear-gradient(90deg,var(--teal) 0 64%,transparent 64% 65%,var(--amber) 65% 82%,transparent 82%)}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(12,16,21,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .frame{display:flex;align-items:center;gap:28px;min-height:58px}
+.brand{font-family:var(--display);font-weight:800;font-stretch:72%;font-size:1.3rem;color:var(--ink);text-decoration:none;margin-right:auto;letter-spacing:.01em}
+.nav{display:flex;gap:24px}
 .nav a{color:var(--muted);text-decoration:none;font-size:.95rem}
 .nav a:hover{color:var(--ink)}
-@media (max-width:640px){.nav{display:none}}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--r);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--accent)}
-.btn.primary{background:var(--accent);color:var(--surface)}
-.btn.ghost{color:var(--accent);background:transparent}
+.cta{color:var(--bg);background:var(--teal);text-decoration:none;font-weight:650;font-size:.92rem;padding:9px 16px;border-radius:3px}
+@media (max-width:720px){.nav{display:none}}
 
 /* Hero */
-.hero{padding-block:48px 56px}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:end}
-.hero h1{font-size:clamp(3.2rem,7vw,6.4rem);font-weight:850;font-variation-settings:"wdth" 62;letter-spacing:-.015em;line-height:.9}
-.hero .role{margin-top:20px;font-size:1.3rem;font-weight:600;line-height:1.35}
-.hero .lede{margin-top:16px;color:var(--muted);max-width:44ch}
+.hero{position:relative;min-height:clamp(560px,84vh,940px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 22%;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,rgba(12,16,21,.94) 0%,rgba(12,16,21,.78) 30%,rgba(12,16,21,.15) 58%,rgba(12,16,21,0) 75%),
+             linear-gradient(0deg,rgba(12,16,21,.95) 0%,rgba(12,16,21,0) 38%)}
+.hero .frame{width:100%;padding-block:64px}
+.hero h1{font-size:clamp(3.6rem,10vw,9.5rem);font-weight:880;font-stretch:62%;letter-spacing:-.01em;line-height:.86}
+.hero .role{margin-top:22px;font-size:clamp(1.15rem,1.8vw,1.5rem);font-weight:600;max-width:30ch;line-height:1.3}
+.hero .now{margin-top:14px;color:#C5CED6;max-width:46ch}
 .hero .links{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
-.hero-photo{position:relative;border-radius:var(--r);overflow:hidden;background:var(--tower)}
-.hero-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:62% 0%}
-.tower{background:var(--tower);color:var(--tower-ink);border-radius:var(--r);overflow:hidden;font-variation-settings:"wdth" 85}
-.hero-photo .tower{position:absolute;left:16px;bottom:16px;width:min(330px,calc(100% - 32px));background:color-mix(in srgb,var(--tower) 92%,transparent)}
-.tower-head{padding:9px 14px;font-weight:700;font-size:.85rem;letter-spacing:.04em;border-bottom:2px solid var(--signal);display:flex;justify-content:space-between;color:var(--tower-ink)}
-.tower-head span{color:var(--tower-muted);font-weight:500}
-.tower ol{list-style:none;margin:0;padding:0}
-.tower li{display:grid;grid-template-columns:76px 1fr;align-items:stretch;border-top:1px solid #243140}
-.tower li:first-child{border-top:0}
-.pos{background:var(--signal);color:#121212;font-weight:850;font-variation-settings:"wdth" 70;font-size:1.25rem;display:flex;align-items:center;justify-content:center;padding:8px 4px;text-align:center;line-height:1}
-.tower li:nth-child(n+3) .pos{background:#26333F;color:var(--tower-ink)}
-.tower .lbl{padding:8px 12px;font-size:.84rem;line-height:1.3}
-.tower .lbl b{display:block;font-weight:650;color:var(--tower-ink)}
-.tower .lbl span{color:var(--tower-muted)}
-@media (max-width:860px){
-  .hero .wrap{grid-template-columns:1fr}
-  .hero-photo .tower{position:static;width:100%;border-radius:0}
+.btn{display:inline-flex;align-items:center;padding:12px 20px;border-radius:3px;font-weight:650;font-size:.95rem;text-decoration:none;border:1px solid var(--teal)}
+.btn.solid{background:var(--teal);color:var(--bg)}
+.btn.line{color:var(--ink);border-color:rgba(238,242,245,.45)}
+.btn.line:hover{border-color:var(--ink)}
+@media (max-width:760px){
+  .hero{min-height:0;display:block}
+  .hero img{position:relative;inset:auto;height:auto;aspect-ratio:4/3.4;object-position:58% 12%}
+  .hero::after{inset:0 0 auto 0;height:calc(100vw * 3.4 / 4);background:linear-gradient(0deg,var(--bg) 0%,rgba(12,16,21,0) 32%)}
+  .hero .frame{padding-block:8px 40px}
 }
 
-/* Now strip */
-.now{background:var(--surface);border-block:1px solid var(--line)}
-.now .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding-block:22px}
-.now .badge{justify-self:start;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 70;font-size:1.05rem;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:999px;white-space:nowrap}
-.now p{color:var(--muted);min-width:0}
-.now p b{color:var(--ink);font-weight:650}
-@media (max-width:760px){.now .wrap{grid-template-columns:1fr;gap:10px}}
-
-/* Sections */
-section.block{padding-block:72px}
-.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:32px;align-items:end;margin-bottom:40px}
-.sec-head p{color:var(--muted);max-width:56ch}
-@media (max-width:760px){.sec-head{grid-template-columns:1fr;gap:12px}}
-
-/* Case studies */
-.case{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;padding-block:48px;border-top:1px solid var(--line)}
-.case:first-of-type{border-top:0;padding-top:0}
-.rail{display:flex;flex-direction:column;gap:14px;font-size:.92rem}
-.rail .org{font-weight:650;color:var(--ink);font-size:1rem}
-.rail .meta{color:var(--muted)}
-.facts{display:grid;gap:10px;margin-top:6px}
-.fact{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
-.fact b{display:block;font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 68;font-size:1.7rem;line-height:1;color:var(--ink)}
-.fact span{color:var(--muted);font-size:.86rem;line-height:1.35;display:block;margin-top:4px}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tags li{list-style:none;font-size:.8rem;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
-.tags{margin:0;padding:0}
-.story{display:flex;flex-direction:column;gap:22px;min-width:0}
-.story h3{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:800;font-variation-settings:"wdth" 70}
-.story .body{display:grid;gap:12px;max-width:64ch}
-.story ul.points{margin:0;padding-left:1.1em;display:grid;gap:6px}
-.story ul.points li::marker{color:var(--accent)}
-.fig-grid{display:grid;gap:12px}
-.g3{grid-template-columns:2fr 1fr 1fr}
-.g2{grid-template-columns:1fr 1fr}
-.g-fea{grid-template-columns:1fr 1fr}
-.g-fea figure:first-child{grid-row:span 2}
-figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
-figure button{all:unset;cursor:zoom-in;display:block;border-radius:var(--r);overflow:hidden;background:var(--surface);border:1px solid var(--line)}
-figure button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-figure img{width:100%;height:100%;object-fit:cover}
-figure.contain button{background:#FFFFFF}
-figure.contain img{object-fit:contain}
-figcaption{font-size:.82rem;color:var(--muted);line-height:1.4}
-.ratio-wide{aspect-ratio:16/10}
-.ratio-tall{aspect-ratio:3/4}
-.ratio-sq{aspect-ratio:1/1}
-@media (max-width:860px){
-  .case{grid-template-columns:1fr;gap:24px}
-  .facts{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-  .g3{grid-template-columns:1fr 1fr}
-  .g3 figure:first-child{grid-column:1/-1}
+/* Results band */
+.results{background:var(--bg-2)}
+.results ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+.results li{padding:26px 22px 28px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0}
+.results li:first-child{border-left:0;padding-left:0}
+.results .pos{font-family:var(--display);font-weight:850;font-stretch:66%;font-size:clamp(2.2rem,3.2vw,3.1rem);line-height:.9;color:var(--ink)}
+.results li:nth-child(-n+2) .pos{color:var(--amber)}
+.results b{font-weight:650;font-size:.95rem;line-height:1.3}
+.results span{color:var(--muted);font-size:.85rem;line-height:1.35}
+@media (max-width:1180px){
+  .results ol{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .results li{border-top:1px solid var(--line)}
+  .results li:nth-child(-n+3){border-top:0}
+  .results li:nth-child(3n+1){border-left:0;padding-left:0}
 }
-@media (max-width:520px){.g-fea{grid-template-columns:1fr}.g-fea figure:first-child{grid-row:auto}}
+@media (max-width:600px){
+  .results ol{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .results li{padding:20px 14px;border-left:1px solid var(--line);border-top:1px solid var(--line)}
+  .results li:nth-child(odd){border-left:0;padding-left:0}
+  .results li:nth-child(-n+2){border-top:0}
+  .results li:nth-child(3){border-top:1px solid var(--line)}
+}
 
-/* Render strip */
-.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-@media (max-width:640px){.strip{grid-template-columns:1fr 1fr}}
+/* Chapters */
+.chapter{padding-top:clamp(72px,9vw,128px)}
+.chapter + .chapter{border-top:1px solid var(--line);margin-top:clamp(72px,9vw,128px)}
+.ch-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,5vw,80px);align-items:end}
+.kicker{color:var(--teal);font-weight:650;font-size:.95rem;margin-bottom:14px}
+.ch-head h2,.sec-title{font-size:clamp(2.6rem,6vw,5.6rem);font-weight:850;font-stretch:64%}
+.stats{display:flex;flex-wrap:wrap;gap:16px 40px}
+.stat b{display:block;font-family:var(--display);font-weight:850;font-stretch:66%;font-size:clamp(2rem,3vw,2.8rem);line-height:1;color:var(--ink)}
+.stat span{color:var(--muted);font-size:.86rem;display:block;max-width:22ch;margin-top:4px;line-height:1.35}
+.ch-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,5vw,80px);margin-top:36px}
+.ch-body p{color:#D3DAE0}
+.ch-body ul{margin:0;padding-left:1.1em;display:grid;gap:8px;color:#C5CED6;align-content:start}
+.ch-body li::marker{color:var(--teal)}
+.ch-body li b{color:var(--ink);font-weight:650}
+.tools{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted)!important;font-size:.9rem;margin-top:18px!important}
+@media (max-width:900px){.ch-head,.ch-body{grid-template-columns:1fr}}
+
+/* Mosaic: 12-column grid across the wide frame */
+.mosaic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:8px;margin-top:44px}
+.mosaic figure{margin:0;position:relative;min-width:0;height:clamp(200px,22vw,380px)}
+.mosaic button{all:unset;display:block;width:100%;height:100%;cursor:zoom-in;background:var(--bg-3);overflow:hidden}
+.mosaic button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.mosaic button:hover img{transform:scale(1.025)}
+.mosaic .cad button{background:#F3F5F7}
+.mosaic .cad img{object-fit:contain}
+.mosaic figcaption,.reel figcaption{position:absolute;left:0;bottom:0;width:100%;padding:22px 12px 9px;font-size:.8rem;line-height:1.3;color:#E7ECF0;background:linear-gradient(0deg,rgba(8,11,15,.85),rgba(8,11,15,0));pointer-events:none}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}
+.mosaic .tall{height:auto;grid-row:span 2}
+@media (max-width:900px){
+  .mosaic{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .c3,.c4,.c5{grid-column:span 3}.c7,.c8,.c12{grid-column:span 6}
+  .mosaic figure{height:clamp(150px,40vw,320px)}
+}
+
+
+/* Experience entries */
+article.role{padding-top:clamp(48px,6vw,96px);margin-top:clamp(48px,6vw,96px);border-top:1px solid var(--line)}
+.ch-head + article.role{border-top:0;margin-top:0;padding-top:clamp(32px,4vw,56px)}
+.role-head{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:clamp(16px,4vw,64px);align-items:start}
+.role-head .when{color:var(--amber);font-weight:650;font-size:.95rem;padding-top:.6em}
+article.role h3{font-size:clamp(2rem,4vw,3.6rem);font-weight:850;font-stretch:66%}
+article.role .co{color:var(--teal);font-weight:650;font-size:1.1rem;margin-top:10px}
+article.role .desc{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:70ch}
+article.role .ch-body{margin-left:calc(min(220px,100%) + clamp(16px,4vw,64px));margin-top:24px}
+.c6{grid-column:span 6}
+@media (max-width:900px){article.role .ch-body{margin-left:0!important}.role-head{grid-template-columns:1fr;gap:6px}.role-head .when{padding-top:0}article.role .ch-body{margin-left:0}.c6{grid-column:span 6}.m6{grid-column:span 6!important}}
+
+/* Horizontal render reel */
+.reel-label{margin-top:44px;color:var(--muted);font-size:.9rem}
+.reel{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(260px,30vw,520px);gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;margin-top:12px}
+.reel figure{margin:0;scroll-snap-align:start;aspect-ratio:16/9;position:relative}
+.reel button{all:unset;display:block;width:100%;height:100%;cursor:zoom-in;overflow:hidden;background:var(--bg-3)}
+.reel img{width:100%;height:100%;object-fit:cover}
 
 /* Experience */
-.xp{display:grid;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
-.xp article{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;padding:22px 24px;border-top:1px solid var(--line)}
-.xp article:first-child{border-top:0}
-.logo{width:48px;height:48px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 70;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
-.xp h3{font-size:1.15rem;font-variation-settings:"wdth" 90;font-weight:700;line-height:1.25}
-.xp .co{color:var(--ink)}
-.xp .when{color:var(--muted);font-size:.9rem;white-space:nowrap;text-align:right}
-.xp ul{margin:8px 0 0;padding-left:1.1em;color:var(--muted);font-size:.95rem;display:grid;gap:4px;max-width:70ch}
-@media (max-width:640px){.xp article{grid-template-columns:40px minmax(0,1fr);padding:18px 16px}.logo{width:40px;height:40px;font-size:.9rem}.xp .when{grid-column:2;text-align:left;order:-1;margin-bottom:-10px}}
+.xp{margin-top:40px;border-top:1px solid var(--line)}
+.xp article{display:grid;grid-template-columns:170px minmax(0,1.1fr) minmax(0,1.6fr);gap:12px clamp(20px,4vw,64px);padding:26px 0;border-bottom:1px solid var(--line)}
+.xp .when{color:var(--muted);font-size:.9rem;padding-top:4px}
+.xp h3{font-family:var(--body);font-size:1.12rem;font-weight:650;line-height:1.3}
+.xp .co{color:var(--teal);font-weight:600;margin-top:2px}
+.xp .desc{color:var(--muted);font-size:.86rem;margin-top:4px;line-height:1.4}
+.xp ul{margin:0;padding-left:1.1em;color:#C5CED6;font-size:.95rem;display:grid;gap:6px;align-content:start}
+.xp li::marker{color:var(--muted)}
+@media (max-width:900px){.xp article{grid-template-columns:1fr;gap:6px}.xp ul{margin-top:8px}}
 
-/* Education + skills */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media (max-width:760px){.two{grid-template-columns:1fr}}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:18px;align-content:start}
-.edu{display:grid;gap:2px}
-.edu b{font-weight:650}
-.edu span{color:var(--muted);font-size:.93rem}
-.skillset{display:grid;gap:6px}
-.skillset h4{margin:0;font-size:.95rem;font-weight:650}
-.skillset p{color:var(--muted);font-size:.93rem}
-.about{display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px;align-items:start}
-.about img{border-radius:var(--r);aspect-ratio:1/1;object-fit:cover;width:100%}
-.about .body{display:grid;gap:14px;max-width:62ch}
-@media (max-width:640px){.about{grid-template-columns:1fr}.about img{max-width:200px}}
+/* Education and skills */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);margin-top:40px}
+.col h3{font-family:var(--body);font-size:.95rem;font-weight:650;color:var(--teal);margin-bottom:14px}
+.col dl{margin:0;display:grid;gap:14px}
+.col dt{font-weight:650}
+.col dd{margin:2px 0 0;color:var(--muted);font-size:.93rem;line-height:1.5}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
 
 /* Contact */
-.contact{background:var(--tower);color:var(--tower-ink)}
-.contact .wrap{padding-block:64px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
-.contact h2{color:var(--tower-ink)}
-.contact p{color:var(--tower-muted);margin-top:12px;max-width:52ch}
-.contact .rows{display:grid;gap:10px;font-size:1rem}
-.contact .rows div{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.contact .rows span{color:var(--tower-muted);width:72px}
-.contact a{color:#7FE0D6}
-.copy{all:unset;cursor:pointer;font-size:.8rem;padding:3px 9px;border:1px solid #33414F;border-radius:999px;color:var(--tower-muted)}
-.copy:focus-visible{outline:2px solid #7FE0D6}
-@media (max-width:760px){.contact .wrap{grid-template-columns:1fr}}
-footer{background:var(--tower);color:var(--tower-muted);font-size:.85rem;border-top:1px solid #243140}
-footer .wrap{padding-block:18px}
-
-
-.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
-.g1{grid-template-columns:1fr}
-.ratio-chart{aspect-ratio:1400/836}
-@media (max-width:860px){.g4{grid-template-columns:1fr 1fr}}
-.xp .desc{color:var(--muted);font-size:.86rem;margin-top:2px}
-.edu span{display:block}
-#skills .about{margin-top:24px;grid-template-columns:120px minmax(0,1fr);align-items:center;gap:24px}
-#skills .about img{max-width:120px}
-.pos{font-size:1.02rem}
-.tower li{grid-template-columns:80px 1fr}
-.tower li:nth-child(n+3) .pos{background:#26333F;color:var(--tower-ink)}
-.tower .lbl{padding:7px 12px;font-size:.8rem}
+.contact{margin-top:clamp(80px,10vw,140px);background:var(--bg-2)}
+.contact .frame{padding-block:clamp(56px,7vw,96px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end}
+.contact h2{font-size:clamp(3rem,8vw,7rem);font-weight:880;font-stretch:62%}
+.contact p{color:var(--muted);margin-top:16px;max-width:48ch}
+.rows{display:grid;gap:14px;font-size:1.05rem;min-width:0}
+.rows div{display:flex;gap:14px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
+.rows span{color:var(--muted);width:80px;font-size:.9rem}
+.copy{all:unset;cursor:pointer;font-size:.8rem;padding:3px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.copy:focus-visible{outline:2px solid var(--teal)}
+@media (max-width:900px){.contact .frame{grid-template-columns:1fr}}
+footer{background:var(--bg-2);color:var(--muted);font-size:.84rem;border-top:1px solid var(--line)}
+footer .frame{padding-block:18px}
 
 /* Lightbox */
-dialog{border:0;padding:0;background:transparent;max-width:min(1400px,96vw);max-height:92vh}
-dialog::backdrop{background:rgba(8,12,16,.88)}
-dialog img{max-height:84vh;width:auto;margin:0 auto;border-radius:4px;background:#fff}
+dialog{border:0;padding:0;background:transparent;max-width:min(1500px,96vw);max-height:94vh}
+dialog::backdrop{background:rgba(5,7,10,.92)}
+dialog img{max-height:86vh;width:auto;margin:0 auto}
 dialog p{color:#DDE3E8;font-size:.9rem;margin-top:10px;text-align:center}
-dialog button{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));background:#0F161E;color:#fff;border:1px solid #33414F;border-radius:999px;padding:8px 14px;font:inherit;cursor:pointer}
+dialog button{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px));background:var(--bg-2);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font:inherit;cursor:pointer}
 </style>
 </head>
 <body>
 
 <header class="top">
-  <div class="wrap">
+  <div class="frame">
     <a class="brand" href="#top">Shantanu Madavan</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#work">Work</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#skills">Skills</a>
+      <a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a>
     </nav>
-    <a class="btn primary" href="#contact">Get in touch</a>
+    <a class="cta" href="#contact">Get in touch</a>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero">
-    <div class="wrap">
-      <div>
-        <h1>Shantanu Madavan</h1>
-        <p class="role">Motorsport engineer. Racecar chassis, suspension and vehicle dynamics.</p>
-        <p class="lede">MSc Advanced Motorsport Engineering student at Cranfield University and First Class mechanical engineering graduate. I captained a Formula Student team to its best national result and have supported race weekends in Indian F4, endurance and GT3.</p>
-        <div class="links">
-          <a class="btn primary" href="#work">See my work</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/shantanu-madavan" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-      <div class="hero-photo">
-        <img src="img/hero-upright.jpg" alt="Shantanu fitting a brake disc and hub to a Team Arion upright in the pit garage" width="2000" height="1333" fetchpriority="high">
-        <aside class="tower" aria-label="Key achievements">
-          <div class="tower-head">Key achievements <span>2024–26</span></div>
-          <ol>
-            <li><div class="pos num">AIR 11</div><div class="lbl"><b>Innovation Award, up from AIR 17</b><span>Supra SAEINDIA Formula Student, 2025</span></div></li>
-            <li><div class="pos num">Top 10</div><div class="lbl"><b>Mentored Arion to its first top 10</b><span>Supra SAEINDIA 2026. Overall Statics, Cost &amp; Manufacturing wins</span></div></li>
-            <li><div class="pos num">5 + 1</div><div class="lbl"><b>Podiums and a win</b><span>Work placement, Indian F4 and IRL, 2024</span></div></li>
-            <li><div class="pos num">Top 30</div><div class="lbl"><b>International trainee selection</b><span>RGB Racing &amp; United Motorsport Academy, 2025</span></div></li>
-            <li><div class="pos">Award</div><div class="lbl"><b>Clean Pit Award, as captain</b><span>Supra SAEINDIA, 2024</span></div></li>
-            <li><div class="pos">Award</div><div class="lbl"><b>Student Excellence Award</b><span>NMIT, 2026</span></div></li>
-          </ol>
-        </aside>
+  <section class="hero" aria-label="Introduction">
+    <img src="img/hero-upright.jpg" alt="Shantanu fitting a brake disc and hub to a Team Arion upright in the pit garage" width="2400" height="1600" fetchpriority="high">
+    <div class="frame">
+      <h1>Shantanu<br>Madavan</h1>
+      <p class="role">Motorsport engineer. Racecar chassis, suspension and vehicle dynamics.</p>
+      <p class="now">MSc Advanced Motorsport Engineering at Cranfield University. Former Formula Student captain, with race weekends in Indian F4, endurance and GT3.</p>
+      <div class="links">
+        <a class="btn solid" href="#experience">See my work</a>
+        <a class="btn line" href="https://www.linkedin.com/in/shantanu-madavan" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </section>
 
-  <div class="now">
-    <div class="wrap">
-      <span class="badge">Now</span>
-      <p><b>MSc Advanced Motorsport Engineering, Cranfield University</b>, September 2026 to September 2027. Looking for design, vehicle dynamics and race engineering roles in UK motorsport. Eligible for the UK Graduate visa from September 2027, no sponsorship required.</p>
-      <a class="btn ghost" href="#contact">Contact</a>
+  <section class="results" aria-label="Key achievements">
+    <div class="livery"></div>
+    <div class="frame">
+      <ol>
+        <li><div class="pos num">AIR 11</div><b>Innovation Award, up from AIR 17</b><span>Supra SAEINDIA Formula Student, 2025</span></li>
+        <li><div class="pos num">Top 10</div><b>Mentored Arion to its first top 10</b><span>Supra SAEINDIA 2026. Overall Statics, Cost and Manufacturing wins</span></li>
+        <li><div class="pos num">5 + 1</div><b>Podiums and a win</b><span>Work placement, Indian F4 and IRL, 2024</span></li>
+        <li><div class="pos num">Top 30</div><b>International trainee selection</b><span>RGB Racing and United Motorsport Academy, 2025</span></li>
+        <li><div class="pos">Clean Pit</div><b>Award, as team captain</b><span>Supra SAEINDIA, 2024</span></li>
+        <li><div class="pos">Excellence</div><b>Student Excellence Award</b><span>NMIT, 2026</span></li>
+      </ol>
     </div>
-  </div>
+  </section>
 
-  <section class="block" id="work">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Selected work</h2>
-        <p>Student and personal projects, from Formula Student chassis and suspension to engine simulation at Cranfield. Professional work is listed under experience.</p>
-      </div>
-
-      <article class="case">
-        <div class="rail">
-          <div><div class="org">Team Arion, NMIT</div><div class="meta">Captain, Formula Student<br>Jan 2023 to Dec 2025</div></div>
-          <div class="facts">
-            <div class="fact"><b class="num">AIR 17 to 11</b><span>National rank, Supra SAEINDIA 2025. The team's first top-11 finish in 13 years</span></div>
-            <div class="fact"><b class="num">3 cars</b><span>Taken through R&amp;D, procurement and build</span></div>
-            <div class="fact"><b class="num">50+</b><span>Members across six subsystems</span></div>
-          </div>
-          <ul class="tags"><li>SolidWorks</li><li>ANSYS</li><li>OptimumK</li><li>Pullrod</li><li>Uprights</li></ul>
-        </div>
-        <div class="story">
-          <h3>Formula Student: chassis, suspension and captaincy</h3>
-          <div class="body">
-            <p>I joined on chassis design and rose to captain in 2023, leading a combustion car team that competes at Supra SAEINDIA and Formula Bharat. As CAD lead I directed vehicle dynamics and structures.</p>
-            <ul class="points">
-              <li>Built equation-driven chassis, pullrod and upright assemblies so geometry changes flowed through the whole car.</li>
-              <li>Ran CAE and suspension kinematics studies in ANSYS and OptimumK to set geometry and verify uprights and mounts.</li>
-              <li>Set up safety protocols and recruitment, and coordinated design, procurement and build to deadline.</li>
-              <li>Mentored the 2026 team to its first top 10, with wins in Overall Statics and Cost &amp; Manufacturing, 3rd in Design and 4th in Business Plan.</li>
-            </ul>
-          </div>
-          <div class="fig-grid g3">
-            <figure><button type="button" data-full="img/cad-arion-car.jpg" class="ratio-wide"><img src="img/cad-arion-car.jpg" alt="SolidWorks assembly of the Arion car with chassis, seat and suspension" loading="lazy"></button><figcaption>Full vehicle assembly in SolidWorks.</figcaption></figure>
-            <figure class="contain"><button type="button" data-full="img/cad-upright-disc.jpg" class="ratio-tall"><img src="img/cad-upright-disc.jpg" alt="CAD of an upright with brake disc and calliper" loading="lazy"></button><figcaption>Upright, hub and brake assembly.</figcaption></figure>
-            <figure><button type="button" data-full="img/arion-build.jpg" class="ratio-tall"><img src="img/arion-build.jpg" alt="Shantanu working on the front suspension of the Arion car" loading="lazy"></button><figcaption>Suspension work in the pits.</figcaption></figure>
-          </div>
-          <div class="fig-grid g3">
-            <figure class="contain"><button type="button" data-full="img/fea-chassis.jpg" class="ratio-wide"><img src="img/fea-chassis.jpg" alt="Structural FEA of the Arion spaceframe" loading="lazy"></button><figcaption>Spaceframe FEA.</figcaption></figure>
-            <figure class="contain"><button type="button" data-full="img/cad-upright-wheel.jpg" class="ratio-tall"><img src="img/cad-upright-wheel.jpg" alt="Upright packaged inside the wheel with pushrod and wishbones" loading="lazy"></button><figcaption>Upright packaged in the wheel.</figcaption></figure>
-            <figure class="contain"><button type="button" data-full="img/cad-hub.jpg" class="ratio-tall"><img src="img/cad-hub.jpg" alt="Hub CAD with constraints applied for simulation" loading="lazy"></button><figcaption>Hub set up for simulation.</figcaption></figure>
-          </div>
-          <div class="fig-grid g4">
-            <figure class="contain"><button type="button" data-full="img/cad-frame.jpg" class="ratio-wide"><img src="img/cad-frame.jpg" alt="CAD of a bare tubular spaceframe" loading="lazy"></button><figcaption>Frame CAD.</figcaption></figure>
-            <figure><button type="button" data-full="img/arion-frame.jpg" class="ratio-wide"><img src="img/arion-frame.jpg" alt="Bare welded steel spaceframe chassis" loading="lazy"></button><figcaption>The same frame, welded.</figcaption></figure>
-            <figure class="contain"><button type="button" data-full="img/cad-pedalbox.jpg" class="ratio-wide"><img src="img/cad-pedalbox.jpg" alt="CAD of the pedal box assembly" loading="lazy"></button><figcaption>Pedal box.</figcaption></figure>
-            <figure><button type="button" data-full="img/arion-autocross.jpg" class="ratio-wide"><img src="img/arion-autocross.jpg" alt="Arion car running through a cone course" loading="lazy"></button><figcaption>Autocross, 2025.</figcaption></figure>
-          </div>
-          <div class="fig-grid g2">
-            <figure><button type="button" data-full="img/cad-arion-2026.jpg" class="ratio-wide"><img src="img/cad-arion-2026.jpg" alt="Render of the 2026 Arion car with front and rear wings" loading="lazy"></button><figcaption>2026 car, the season I mentored.</figcaption></figure>
-            <figure><button type="button" data-full="img/arion-paddock.jpg" class="ratio-wide"><img src="img/arion-paddock.jpg" alt="Team Arion with car number 06 in a crowded paddock" loading="lazy"></button><figcaption>Paddock at Supra SAEINDIA 2025.</figcaption></figure>
-          </div>
-        </div>
+  <section class="chapter" id="experience">
+    <div class="frame">
+      <div class="ch-head"><div><p class="kicker">Most recent first</p><h2>Experience</h2></div></div>
+      <article class="role">
+        <div class="role-head"><p class="when num">Dec 2025 – Aug 2026</p><div><h3>Design Engineering Intern, CAD Lead</h3><p class="co">D&amp;O Motorsport, Mumbai</p><p class="desc">Motorsport workshop and performance vehicle engineering, sister company of United Motorsport Academy</p></div></div>
+        <div class="ch-body"><div class="measure"><p>I led CAD on an in-house electric sports car. Project data stays with the client, so this entry has no images.</p></div><ul><li>Owned vehicle architecture, packaging and integration of the motor, gearbox, battery and cooling.</li><li>Built a global parametric CAD structure for fast iteration across vehicle variants.</li><li>Designed and built the chassis jig, and validated the structure with FEA across the main load cases.</li></ul></div>
+        
       </article>
-
-      <article class="case">
-        <div class="rail">
-          <div><div class="org">Cranfield University</div><div class="meta">MSc coursework, Motorsport Powertrains<br>2026</div></div>
-          <ul class="tags"><li>AVL CRUISE M</li><li>Engine simulation</li><li>Turbocharging</li><li>Hybrid</li></ul>
-        </div>
-        <div class="story">
-          <h3>Competition engine development in AVL CRUISE M</h3>
-          <div class="body">
-            <p>Starting from a supplied single-cylinder model, I developed three 2.0 L competition engines: naturally aspirated, turbocharged with an intercooler, and a hybrid with an electric motor and variable cam phasing.</p>
-            <ul class="points">
-              <li>Tuned intake and exhaust geometry, which had the largest effect on performance across all three engines.</li>
-              <li>Matched a turbocharger against its compressor map and worked through boost control and knock limits.</li>
-              <li>Benchmarked each engine against production and competition engines of the same capacity.</li>
-            </ul>
-          </div>
-          <div class="fig-grid g1">
-            <figure class="contain"><button type="button" data-full="img/cranfield-ve.jpg" class="ratio-chart"><img src="img/cranfield-ve.jpg" alt="Chart of volumetric efficiency by cylinder against engine speed for the 2.0 litre naturally aspirated engine" loading="lazy"></button><figcaption>Volumetric efficiency by cylinder across the speed range, naturally aspirated engine.</figcaption></figure>
-          </div>
-        </div>
+      <article class="role">
+        <div class="role-head"><p class="when num">Feb 2025 – Aug 2026</p><div><h3>Part-time Engineer</h3><p class="co">Jetco Advanced Industries, Mumbai</p><p class="desc">Engineering start-up: pulsejet vehicle development, structural design and FEA services</p></div></div>
+        <div class="ch-body"><div class="measure"><p>Hands-on development of a pulsejet-powered vehicle alongside structural analysis work for clients.</p></div><ul><li>Assembled, tested and operated a twin-pulsejet bike built on a KTM Duke 390 chassis.</li><li>Modelled an ISO tank container and set up its structural FEA load cases.</li><li>Audited a third-party FEA report and reviewed client drawings for feasibility.</li></ul></div>
+        <div class="mosaic"><figure class="c6"><button type="button" data-full="img/jet-bike.jpg"><img src="img/jet-bike.jpg" alt="Twin-pulsejet bike firing at night" loading="lazy"></button><figcaption>Pulsejet bike running at night</figcaption></figure><figure class="c6"><button type="button" data-full="img/jet-bike-day.jpg"><img src="img/jet-bike-day.jpg" alt="Shantanu with the pulsejet bike at an event ground" loading="lazy"></button><figcaption>Pulsejet bike at the event</figcaption></figure></div>
       </article>
-
-      <article class="case">
-        <div class="rail">
-          <div><div class="org">Trackside and training</div><div class="meta">Indian F4 and IRL, Sepang 1000 km, RGB Racing, LIME 2.0<br>2024 to 2025</div></div>
-          <ul class="tags"><li>MoTeC i2</li><li>WinTAX</li><li>Pi Toolbox</li><li>VBOX</li><li>Setup</li></ul>
-        </div>
-        <div class="story">
-          <h3>Race weekends and motorsport training</h3>
-          <div class="body">
-            <p>Placements and training that taught me how a race weekend runs: setup to a checklist, decisions from data and driver feedback, and repairs against the clock.</p>
-            <ul class="points">
-              <li><b>Indian F4 and Indian Racing League, 2024.</b> Prepared Mygale M21-F4 and Wolf GB08 Thunder cars alongside MP Motorsport engineers across a five-weekend season.</li>
-              <li><b>Sepang 1000 km, 2024.</b> Track-side engineer with DV Motorsport, setting up suspension from data and driver feedback through to a 4th-place class finish.</li>
-              <li><b>RGB Racing and United Motorsport Academy, 2025.</b> Trained under ex-Porsche LMP1 race engineer Roberto Gómez Bueno, with vehicle dynamics from F1 engineer José Santos and aerodynamics from Sauber's Alberto Maggioni.</li>
-              <li><b>LIME 2.0, 2024.</b> Launchpad for Indian Motorsport Engineers with United Motorsport Academy, certified by the University of Bedfordshire.</li>
-            </ul>
-          </div>
-          <div class="fig-grid g3">
-            <figure><button type="button" data-full="img/f4-grid.jpg" class="ratio-wide"><img src="img/f4-grid.jpg" alt="Engineers preparing the number 27 F4 car on the grid" loading="lazy"></button><figcaption>Grid prep, Indian F4.</figcaption></figure>
-            <figure><button type="button" data-full="img/f4-corner.jpg" class="ratio-tall"><img src="img/f4-corner.jpg" alt="Shantanu working on an F4 car corner assembly" loading="lazy"></button><figcaption>Corner assembly work.</figcaption></figure>
-            <figure><button type="button" data-full="img/sepang-crew.jpg" class="ratio-tall"><img src="img/sepang-crew.jpg" alt="DV Motorsport crew on the grid at Sepang" loading="lazy"></button><figcaption>DV Motorsport crew at Sepang.</figcaption></figure>
-          </div>
-          <div class="fig-grid g2">
-            <figure><button type="button" data-full="img/f4-driver.jpg" class="ratio-wide"><img src="img/f4-driver.jpg" alt="Driver debrief beside the F4 car" loading="lazy"></button><figcaption>Driver debrief, Indian F4.</figcaption></figure>
-            <figure><button type="button" data-full="img/lime-cert.jpg" class="ratio-wide"><img src="img/lime-cert.jpg" alt="Shantanu receiving the LIME 2.0 certificate beside a single-seater" loading="lazy"></button><figcaption>LIME 2.0 with United Motorsport Academy, 2024.</figcaption></figure>
-          </div>
-        </div>
+      <article class="role">
+        <div class="role-head"><p class="when num">Jan 2023 – Dec 2025</p><div><h3>Captain, Formula Student</h3><p class="co">Team Arion, NMIT, Bangalore</p><p class="desc">Combustion racecar team competing at Supra SAEINDIA and Formula Bharat</p></div></div>
+        <div class="ch-body"><div class="measure"><p>I joined on chassis design and rose to captain in 2023, leading a 50+ member, six-subsystem team. As CAD lead I directed vehicle dynamics and structures across three cars. National rank went from AIR 17 to AIR 11, the team&#39;s first top-11 finish in 13 years.</p></div><ul><li>Built equation-driven chassis, pullrod and upright assemblies.</li><li>Ran CAE and kinematics studies in ANSYS and OptimumK to set geometry and verify uprights and mounts.</li><li>Set up safety protocols and recruitment, and ran design, procurement and build to deadline.</li><li>Mentored the 2026 team to its first top 10: Overall Statics and Cost and Manufacturing wins, 3rd in Design.</li></ul></div>
+        <div class="mosaic"><figure class="c8"><button type="button" data-full="img/arion-paddock.jpg"><img src="img/arion-paddock.jpg" alt="Team Arion with car number 06 in a crowded paddock" loading="lazy"></button><figcaption>Paddock, Supra SAEINDIA 2025</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-sunset.jpg"><img style="object-position:50% 88%" src="img/arion-sunset.jpg" alt="The Arion car at sunset in front of the Buddh circuit grandstand" loading="lazy"></button><figcaption>Buddh International Circuit, 2025</figcaption></figure><figure class="c5 cad"><button type="button" data-full="img/cad-arion-car.jpg"><img src="img/cad-arion-car.jpg" alt="SolidWorks assembly of the Arion car" loading="lazy"></button><figcaption>Full vehicle assembly</figcaption></figure><figure class="c4 cad"><button type="button" data-full="img/fea-chassis.jpg"><img src="img/fea-chassis.jpg" alt="Structural FEA of the Arion spaceframe" loading="lazy"></button><figcaption>Spaceframe FEA</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-upright-disc.jpg"><img src="img/cad-upright-disc.jpg" alt="CAD of an upright with brake disc and calliper" loading="lazy"></button><figcaption>Upright, hub and brake</figcaption></figure><figure class="c3"><button type="button" data-full="img/cad-upright-wheel.jpg"><img src="img/cad-upright-wheel.jpg" alt="Upright packaged inside the wheel" loading="lazy"></button><figcaption>Upright packaged in the wheel</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-hub.jpg"><img src="img/cad-hub.jpg" alt="Hub CAD set up for simulation" loading="lazy"></button><figcaption>Hub set up for simulation</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/cad-pedalbox.jpg"><img src="img/cad-pedalbox.jpg" alt="Pedal box CAD" loading="lazy"></button><figcaption>Pedal box</figcaption></figure><figure class="c3"><button type="button" data-full="img/arion-build.jpg"><img src="img/arion-build.jpg" alt="Shantanu working on the front suspension" loading="lazy"></button><figcaption>Suspension work in the pits</figcaption></figure><figure class="c4 cad"><button type="button" data-full="img/cad-frame.jpg"><img src="img/cad-frame.jpg" alt="CAD of the bare spaceframe" loading="lazy"></button><figcaption>Frame in CAD</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-frame.jpg"><img src="img/arion-frame.jpg" alt="Bare welded steel spaceframe" loading="lazy"></button><figcaption>The same frame, welded</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-cones.jpg"><img src="img/arion-cones.jpg" alt="Arion car on the autocross course" loading="lazy"></button><figcaption>Autocross, 2025</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-trophies.jpg"><img src="img/arion-trophies.jpg" alt="Trophies on the Arion nose cone" loading="lazy"></button><figcaption>2025 awards on the nose cone</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-buddh.jpg"><img style="object-position:50% 70%" src="img/arion-buddh.jpg" alt="The Arion car on track at Buddh" loading="lazy"></button><figcaption>On track, 2025</figcaption></figure><figure class="c4"><button type="button" data-full="img/arion-render.jpg"><img src="img/arion-render.jpg" alt="Render of the Arion car" loading="lazy"></button><figcaption>Car render</figcaption></figure><figure class="c12 cad"><button type="button" data-full="img/cad-arion-2026.jpg"><img src="img/cad-arion-2026.jpg" alt="Render of the 2026 Arion car with wings" loading="lazy"></button><figcaption>2026 car, the season I mentored</figcaption></figure></div>
       </article>
-
-      <article class="case">
-        <div class="rail">
-          <div><div class="org">La Fondation Dassault Systèmes</div><div class="meta">Team internship via NMIT<br>Jun 2023 to Sep 2025</div></div>
-          <ul class="tags"><li>SolidWorks</li><li>CFD</li><li>FEA</li><li>DFMA</li></ul>
-        </div>
-        <div class="story">
-          <h3>Robotic vacuum digital twin</h3>
-          <div class="body">
-            <p>A three-year team project building a digital twin of a robotic vacuum cleaner. I designed the cyclone separator, impeller, ducting and structural housing, used CFD to reshape the ducts and suction paths before prototyping, and applied FEA and DFMA to the housing and mounts.</p>
-          </div>
-          <div class="fig-grid g3">
-            <figure class="contain"><button type="button" data-full="img/dassault-internals.jpg" class="ratio-wide"><img src="img/dassault-internals.jpg" alt="Cutaway CAD of the robotic vacuum showing cyclone, motor and battery" loading="lazy"></button><figcaption>Internal layout with cyclone separator.</figcaption></figure>
-            <figure class="contain"><button type="button" data-full="img/dassault-impeller.jpg" class="ratio-tall"><img src="img/dassault-impeller.jpg" alt="CAD of the impeller" loading="lazy"></button><figcaption>Impeller.</figcaption></figure>
-            <figure class="contain"><button type="button" data-full="img/dassault-housing.jpg" class="ratio-tall"><img src="img/dassault-housing.jpg" alt="CAD of the outer housing" loading="lazy"></button><figcaption>Housing.</figcaption></figure>
-          </div>
-        </div>
+      <article class="role">
+        <div class="role-head"><p class="when num">Aug 2025 – Sep 2025</p><div><h3>Engineering Trainee</h3><p class="co">RGB Racing, Madrid</p><p class="desc">Porsche GT3 team in Porsche Supercup and Sprint Challenge Ibérica, via United Motorsport Academy</p></div></div>
+        <div class="ch-body"><div class="measure"><p>Selected in the top 30 internationally for the UMA Bootcamp with RGB Racing, training on Porsche 992 GT3 Cup and GT3 R systems and setup.</p></div><ul><li>Trained under ex-Porsche LMP1 race engineer Roberto Gómez Bueno on GT car systems and setup.</li><li>Analysed VBOX lap data at Barcelona and Navarra to isolate braking, gear and line losses between drivers.</li><li>Studied vehicle dynamics under F1 engineer José Santos and aerodynamics under Sauber&#39;s Alberto Maggioni.</li></ul></div>
+        <div class="mosaic"><figure class="c6"><button type="button" data-full="img/rgb-gt3r.jpg"><img src="img/rgb-gt3r.jpg" alt="Trainees around a Porsche GT3 R in the RGB workshop" loading="lazy"></button><figcaption>Porsche GT3 R in the RGB workshop</figcaption></figure><figure class="c6"><button type="button" data-full="img/rgb-cockpit.jpg"><img src="img/rgb-cockpit.jpg" alt="Inside a Porsche GT3 cockpit" loading="lazy"></button><figcaption>GT3 cockpit and systems</figcaption></figure><figure class="c6"><button type="button" data-full="img/rgb-brake.jpg"><img src="img/rgb-brake.jpg" alt="Brake disc and hub on a Porsche GT3 on setup pads" loading="lazy"></button><figcaption>Corner on the setup pads</figcaption></figure><figure class="c6"><button type="button" data-full="img/rgb-workshop.jpg"><img src="img/rgb-workshop.jpg" alt="The RGB Racing workshop with GT3 cars" loading="lazy"></button><figcaption>RGB Racing workshop, Madrid</figcaption></figure></div>
       </article>
-
-      <article class="case">
-        <div class="rail">
-          <div><div class="org">Other projects</div><div class="meta">Builds, competitions and modelling</div></div>
-          <ul class="tags"><li>Pulsejet</li><li>Robotics</li><li>Blender</li></ul>
-        </div>
-        <div class="story">
-          <h3>Pulsejet bike, lunar rover and concept design</h3>
-          <div class="body">
-            <ul class="points">
-              <li><b>Twin-pulsejet bike, 2025.</b> Assembled, tested and operated a pulsejet-powered bike built on a KTM Duke 390 chassis, with Jetco Advanced Industries.</li>
-              <li><b>ISRO Robotics Challenge (IRoC-U), 2024.</b> Lunar rover entry with a tracked chassis and manipulator arm.</li>
-              <li><b>Blender.</b> Concept and freelance car modelling, which keeps my surfacing and visual communication sharp.</li>
-            </ul>
-          </div>
-          <div class="strip">
-            <figure><button type="button" data-full="img/jet-bike.jpg" class="ratio-wide"><img src="img/jet-bike.jpg" alt="Twin-pulsejet bike firing at night" loading="lazy"></button><figcaption>Pulsejet bike running at night.</figcaption></figure>
-            <figure class="contain"><button type="button" data-full="img/rover-arm.jpg" class="ratio-wide"><img src="img/rover-arm.jpg" alt="CAD of the lunar rover manipulator arm" loading="lazy"></button><figcaption>Rover manipulator arm.</figcaption></figure>
-            <figure class="contain"><button type="button" data-full="img/rover-top.jpg" class="ratio-wide"><img src="img/rover-top.jpg" alt="Top view CAD of the tracked lunar rover" loading="lazy"></button><figcaption>Tracked rover chassis.</figcaption></figure>
-            <figure><button type="button" data-full="img/blender-concept-a.jpg" class="ratio-wide"><img src="img/blender-concept-a.jpg" alt="Blender model of a yellow concept supercar" loading="lazy"></button><figcaption>Concept car model.</figcaption></figure>
-            <figure><button type="button" data-full="img/blender-concept-b.jpg" class="ratio-wide"><img src="img/blender-concept-b.jpg" alt="Blender render of a yellow concept supercar" loading="lazy"></button><figcaption>Concept car render.</figcaption></figure>
-            <figure><button type="button" data-full="img/render-4.jpg" class="ratio-wide"><img src="img/render-4.jpg" alt="Blender render of a concept single-seater in black and red" loading="lazy"></button><figcaption>Single-seater concept.</figcaption></figure>
-          </div>
-        </div>
+      <article class="role">
+        <div class="role-head"><p class="when num">Jun 2023 – Sep 2025</p><div><h3>Intern</h3><p class="co">Dassault Systèmes, Bangalore</p><p class="desc">Three-year team internship via La Fondation Dassault Systèmes India</p></div></div>
+        <div class="ch-body"><div class="measure"><p>Built a digital twin of a robotic vacuum cleaner across fluid, robotic and mechanical systems.</p></div><ul><li>Designed the cyclone separator, impeller, ducting and structural housing.</li><li>Ran CFD on airflow and pressure loss, reshaping ducts and suction paths before prototyping.</li><li>Applied FEA and DFMA to the housing and mounts.</li></ul></div>
+        <div class="mosaic"><figure class="c6 cad"><button type="button" data-full="img/dassault-internals.jpg"><img src="img/dassault-internals.jpg" alt="Cutaway CAD of the robotic vacuum" loading="lazy"></button><figcaption>Internal layout with cyclone separator</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/dassault-impeller.jpg"><img src="img/dassault-impeller.jpg" alt="Impeller CAD" loading="lazy"></button><figcaption>Impeller</figcaption></figure><figure class="c3 cad"><button type="button" data-full="img/dassault-housing.jpg"><img src="img/dassault-housing.jpg" alt="Outer housing CAD" loading="lazy"></button><figcaption>Housing</figcaption></figure></div>
+      </article>
+      <article class="role">
+        <div class="role-head"><p class="when num">Nov 2024 – Dec 2024</p><div><h3>Track-side Engineer</h3><p class="co">DV Motorsport, Sepang</p><p class="desc">Malaysian touring and endurance team, SP2 V class</p></div></div>
+        <div class="ch-body"><div class="measure"><p>Supported engineering operations for the Sepang 1000 km, contributing to a 4th-place class finish with a Suzuki Swift Sport.</p></div><ul><li>Set up race suspension from historical data, practice results and driver feedback.</li><li>Documented pit-stop strategy, tyre pressures and usage, and pre- and post-session inspections.</li><li>Diagnosed and repaired faults across stints to keep the car running to the finish.</li></ul></div>
+        <div class="mosaic"><figure class="c12"><button type="button" data-full="img/sepang-crew.jpg"><img src="img/sepang-crew.jpg" alt="DV Motorsport crew on the grid at Sepang" loading="lazy"></button><figcaption>DV Motorsport crew, Sepang International Circuit</figcaption></figure></div>
+      </article>
+      <article class="role">
+        <div class="role-head"><p class="when num">Aug 2024 – Nov 2024</p><div><h3>Work-placement Engineer</h3><p class="co">Racing Promotions, Chennai</p><p class="desc">Promoter of the FIA-certified F4 Indian Championship and the Indian Racing League</p></div></div>
+        <div class="ch-body"><div class="measure"><p>Work placement through United Motorsport Academy across a five-weekend season, after completing the LIME 2.0 course.</p></div><ul><li>Prepared Mygale M21-F4 and Wolf GB08 Thunder cars that recorded 5 podiums and 1 win.</li><li>Suspension and aero setup, fault diagnosis and repairs between sessions alongside MP Motorsport engineers.</li><li>Analysed car and driver behaviour in MoTeC i2 and WinTAX to support setup changes.</li></ul></div>
+        <div class="mosaic"><figure class="c8"><button type="button" data-full="img/f4-grid.jpg"><img src="img/f4-grid.jpg" alt="Engineers preparing the number 27 F4 car on the grid" loading="lazy"></button><figcaption>Grid prep, Indian F4</figcaption></figure><figure class="c4 m6"><button type="button" data-full="img/f4-corner.jpg"><img src="img/f4-corner.jpg" alt="Shantanu working on an F4 corner assembly" loading="lazy"></button><figcaption>Corner assembly</figcaption></figure><figure class="c6"><button type="button" data-full="img/f4-driver.jpg"><img src="img/f4-driver.jpg" alt="Driver debrief beside the F4 car" loading="lazy"></button><figcaption>Driver debrief, Indian F4</figcaption></figure><figure class="c6"><button type="button" data-full="img/lime-cert.jpg"><img src="img/lime-cert.jpg" alt="Shantanu receiving the LIME 2.0 certificate beside a single-seater" loading="lazy"></button><figcaption>LIME 2.0 with United Motorsport Academy, 2024</figcaption></figure></div>
       </article>
     </div>
   </section>
 
-  <section class="block" id="experience" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head"><h2>Experience</h2><p>Most recent first.</p></div>
-      <div class="xp">
-        <article><div class="logo">D&amp;O</div><div><h3>Design Engineering Intern, CAD Lead</h3><div class="co">D&amp;O Motorsport, Mumbai</div><div class="desc">Motorsport workshop and performance vehicle engineering firm</div><ul><li>Led CAD for an electric sports car: architecture, packaging and integration of the powertrain, battery and cooling.</li><li>Built a global parametric CAD structure for fast iteration across vehicle variants, and designed and built the chassis jig.</li><li>Owned suspension, chassis and powertrain integration decisions, with FEA and DFMA throughout.</li></ul></div><div class="when num">Dec 2025 – Aug 2026</div></article>
-        <article><div class="logo">JAI</div><div><h3>Part-time Engineer</h3><div class="co">Jetco Advanced Industries, Mumbai</div><div class="desc">Engineering start-up: pulsejet vehicle development and structural design and FEA services</div><ul><li>Assembled, tested and operated a twin-pulsejet bike on a KTM Duke 390 chassis.</li><li>Modelled an ISO tank container and set up its structural FEA load cases.</li><li>Audited a third-party FEA report and reviewed client drawings for feasibility.</li></ul></div><div class="when num">Feb 2025 – Aug 2026</div></article>
-        <article><div class="logo">ARN</div><div><h3>Captain</h3><div class="co">Team Arion, NMIT Formula Student</div><div class="desc">Combustion racecar team competing at Supra SAEINDIA and Formula Bharat</div><ul><li>Led a 50+ member, six-subsystem team through three cars. National rank AIR 17 to AIR 11.</li><li>CAD lead for vehicle dynamics and structures.</li></ul></div><div class="when num">Jan 2023 – Dec 2025</div></article>
-        <article><div class="logo">RGB</div><div><h3>Engineering Trainee</h3><div class="co">RGB Racing, Madrid</div><div class="desc">Porsche GT3 team, Porsche Supercup and Sprint Challenge Ibérica</div><ul><li>Top 30 international selection for United Motorsport Academy training on Porsche GT car systems and setup.</li><li>Analysed VBOX lap data to isolate braking, gear and line losses between drivers.</li></ul></div><div class="when num">Aug 2025 – Sep 2025</div></article>
-        <article><div class="logo">3DS</div><div><h3>Intern</h3><div class="co">Dassault Systèmes, Bangalore</div><div class="desc">Internship via La Fondation Dassault Systèmes India</div><ul><li>Designed the cyclone separator, impeller, ducting and housing of a robotic vacuum digital twin, using CFD, FEA and DFMA.</li></ul></div><div class="when num">Jun 2023 – Sep 2025</div></article>
-        <article><div class="logo">DV</div><div><h3>Track-side Engineer</h3><div class="co">DV Motorsport, Sepang</div><div class="desc">Malaysian touring and endurance team, SP2 V class</div><ul><li>Suspension setup, pit-stop and tyre documentation, inspections and repairs. 4th in class at the Sepang 1000 km.</li></ul></div><div class="when num">Nov 2024 – Dec 2024</div></article>
-        <article><div class="logo">RPPL</div><div><h3>Work-placement Engineer</h3><div class="co">Racing Promotions, Chennai</div><div class="desc">Promoter of the FIA-certified F4 Indian Championship and the Indian Racing League</div><ul><li>Car preparation, suspension and aero setup, and MoTeC i2 and WinTAX analysis. 5 podiums and 1 win.</li></ul></div><div class="when num">Aug 2024 – Nov 2024</div></article>
+  <section class="chapter" id="projects">
+    <div class="frame">
+      <div class="ch-head"><div><p class="kicker">Cranfield, ISRO and personal work</p><h2>Projects</h2></div></div>
+      <div class="ch-body">
+        <ul>
+          <li><b>Cranfield MSc, Motorsport Powertrains, 2026.</b> Developed naturally aspirated, turbocharged and hybrid 2.0 L competition engines in AVL CRUISE M from a single-cylinder model, working through intake and exhaust tuning, turbo matching and knock limits.</li>
+        </ul>
+        <ul>
+          <li><b>ISRO Robotics Challenge (IRoC-U), 2024.</b> Mechanical systems lead on a lunar rover with a tracked chassis and manipulator arm.</li>
+        </ul>
+      </div>
+      <div class="mosaic"><figure class="c7 cad"><button type="button" data-full="img/cranfield-ve.jpg"><img src="img/cranfield-ve.jpg" alt="Chart of volumetric efficiency by cylinder against engine speed" loading="lazy"></button><figcaption>Volumetric efficiency by cylinder, Cranfield powertrain coursework</figcaption></figure><figure class="c5 m6 cad"><button type="button" data-full="img/rover-arm.jpg"><img src="img/rover-arm.jpg" alt="CAD of the lunar rover manipulator arm" loading="lazy"></button><figcaption>Lunar rover manipulator arm</figcaption></figure></div>
+      <p class="reel-label">Blender car modelling and rendering, all my own models. Scroll sideways for more.</p>
+      <div class="reel">
+        <figure><button type="button" data-full="img/blender-concept-b.jpg"><img src="img/blender-concept-b.jpg" alt="Render of a yellow concept supercar" loading="lazy"></button><figcaption>Concept supercar</figcaption></figure>
+        <figure><button type="button" data-full="img/render-4.jpg"><img src="img/render-4.jpg" alt="Render of a concept single-seater" loading="lazy"></button><figcaption>Single-seater concept</figcaption></figure>
+        <figure><button type="button" data-full="img/render-1.jpg"><img src="img/render-1.jpg" alt="Render of a Formula 1 car" loading="lazy"></button><figcaption>F1 car model</figcaption></figure>
+        <figure><button type="button" data-full="img/render-3.jpg"><img src="img/render-3.jpg" alt="Render of a blue hypercar" loading="lazy"></button><figcaption>Hypercar model</figcaption></figure>
+        <figure><button type="button" data-full="img/render-5.jpg"><img src="img/render-5.jpg" alt="Render of two red supercars" loading="lazy"></button><figcaption>Supercar models</figcaption></figure>
+        <figure><button type="button" data-full="img/render-2.jpg"><img src="img/render-2.jpg" alt="Render of a grey supercar" loading="lazy"></button><figcaption>Supercar model</figcaption></figure>
+        <figure><button type="button" data-full="img/blender-concept-a.jpg"><img src="img/blender-concept-a.jpg" alt="Yellow concept car in the Blender viewport" loading="lazy"></button><figcaption>Concept in progress</figcaption></figure>
       </div>
     </div>
   </section>
 
-  <section class="block" id="education" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head"><h2>Education</h2></div>
-      <div class="two">
-        <div class="panel">
-          <div class="edu"><b>MSc Advanced Motorsport Engineering</b><span>Cranfield University, UK. September 2026 to September 2027</span></div>
-          <div class="edu"><b>B.E. Mechanical Engineering</b><span>NMIT, Bangalore. December 2022 to June 2026. CGPA 8.71/10, First Class with Distinction</span></div>
-          <div class="edu"><b>Final-year project</b><span>MOF-reinforced PLA composites for FDM 3D printing</span></div>
-        </div>
-        <div class="panel">
-          <div class="edu"><b>Certificates</b><span>Certified SOLIDWORKS Professional (CSWP) and Associate (CSWA), 2026</span><span>RGB Racing &amp; United Motorsport Academy Bootcamp, 2025</span><span>Indian F4 and Indian Racing League Work Placement, 2024</span><span>LIME 2.0, University of Bedfordshire-certified, 2024</span><span>ISRO Robotics Challenge (IRoC-U), Lunar Rover, 2024</span><span>ShaktEVah 2.0 E-Mobility Workshop, IEEE-sponsored, 2023</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="skills" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head"><h2>Skills</h2></div>
-      <div class="two">
-        <div class="panel">
-          <div class="skillset"><h4>Engineering</h4><p>Chassis and suspension design, suspension kinematics, structural FEA, CFD, DFMA, jig and fixture design.</p></div>
-          <div class="skillset"><h4>Trackside</h4><p>Car setup, fault diagnosis, driver feedback and debriefs, tyre-pressure and pit-stop procedures.</p></div>
-          <div class="skillset"><h4>Data analysis</h4><p>Pi Toolbox, WinTAX, MoTeC i2, VBOX Circuit Tools.</p></div>
-        </div>
-        <div class="panel">
-          <div class="skillset"><h4>CAD</h4><p>SolidWorks (CSWP), Fusion 360, 3DEXPERIENCE, Blender, CATIA V5 (foundational).</p></div>
-          <div class="skillset"><h4>Simulation</h4><p>ANSYS, SolidWorks Simulation, ChassisSim, OptimumK, OptimumLap, AVL CRUISE M.</p></div>
-          <div class="skillset"><h4>Languages</h4><p>English (native), Hindi (proficient), Tamil (proficient), Kannada (intermediate).</p></div>
-        </div>
-      </div>
-      <div class="about">
-        <img src="img/headshot.jpg" alt="Portrait of Shantanu Madavan" width="800" height="800" loading="lazy">
-        <div class="body">
-          <p>Outside work I sim race, kart, maintain cars, 3D print and build models. At NMIT I organised the college sim-racing event, which drew more than 100 entrants. I also swim, play badminton, sketch and travel.</p>
-        </div>
+  <section class="chapter" id="skills">
+    <div class="frame">
+      <h2 class="sec-title">Education and skills</h2>
+      <div class="cols">
+        <div class="col"><h3>Education</h3><dl>
+          <div><dt>MSc Advanced Motorsport Engineering</dt><dd>Cranfield University, UK. 2026 to 2027</dd></div>
+          <div><dt>B.E. Mechanical Engineering</dt><dd>NMIT, Bangalore. 2022 to 2026. CGPA 8.71/10, First Class with Distinction</dd></div>
+          <div><dt>Final-year project</dt><dd>MOF-reinforced PLA composites for FDM 3D printing</dd></div>
+        </dl></div>
+        <div class="col"><h3>Skills</h3><dl>
+          <div><dt>Engineering</dt><dd>Chassis and suspension design, kinematics, structural FEA, CFD, DFMA, jig and fixture design</dd></div>
+          <div><dt>CAD and simulation</dt><dd>SolidWorks (CSWP), Fusion 360, 3DEXPERIENCE, Blender, CATIA V5. ANSYS, SolidWorks Simulation, ChassisSim, OptimumK, OptimumLap, AVL CRUISE M</dd></div>
+          <div><dt>Trackside and data</dt><dd>Car setup, fault diagnosis, debriefs, tyre and pit-stop procedures. Pi Toolbox, WinTAX, MoTeC i2, VBOX</dd></div>
+        </dl></div>
+        <div class="col"><h3>Certificates</h3><dl>
+          <div><dt>CSWP and CSWA, 2026</dt><dd>Certified SOLIDWORKS Professional and Associate</dd></div>
+          <div><dt>RGB Racing and UMA Bootcamp, 2025</dt></div>
+          <div><dt>LIME 2.0, 2024</dt><dd>University of Bedfordshire-certified</dd></div>
+          <div><dt>ISRO Robotics Challenge, 2024</dt><dd>Lunar rover, mechanical systems lead</dd></div>
+          <div><dt>Languages</dt><dd>English, Hindi, Tamil, Kannada</dd></div>
+        </dl></div>
       </div>
     </div>
   </section>
 </main>
 
 <section class="contact" id="contact">
-  <div class="wrap">
+  <div class="livery"></div>
+  <div class="frame">
     <div>
       <h2>Get in touch</h2>
-      <p>Open to placements, graduate roles and project conversations in UK motorsport. Email is the fastest way to reach me. My CV is available on request.</p>
+      <p>Looking for design, vehicle dynamics and race engineering roles in UK motorsport. Eligible for the UK Graduate visa from September 2027, no sponsorship required. CV on request.</p>
     </div>
     <div class="rows">
       <div><span>Email</span><a href="mailto:shantanu.madavan@gmail.com" id="email">shantanu.madavan@gmail.com</a><button class="copy" type="button" data-copy="shantanu.madavan@gmail.com">Copy</button></div>
@@ -469,17 +336,18 @@ dialog button{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right
     </div>
   </div>
 </section>
-<footer><div class="wrap">© 2026 Shantanu Madavan. Event photography by the respective event photographers.</div></footer>
+<footer><div class="frame">© 2026 Shantanu Madavan. Event photography by the respective event photographers.</div></footer>
 
 <dialog id="lb" aria-label="Enlarged image"><button type="button" id="lbclose">Close</button><img id="lbimg" alt=""><p id="lbcap"></p></dialog>
 
 <script>
 (function(){
   var lb=document.getElementById('lb'),img=document.getElementById('lbimg'),cap=document.getElementById('lbcap');
-  document.querySelectorAll('figure button[data-full]').forEach(function(b){
-    b.setAttribute('aria-label','Enlarge: '+(b.querySelector('img').alt||'image'));
+  document.querySelectorAll('button[data-full]').forEach(function(b){
+    var i=b.querySelector('img');
+    b.setAttribute('aria-label','Enlarge: '+(i.alt||'image'));
     b.addEventListener('click',function(){
-      img.src=b.dataset.full; img.alt=b.querySelector('img').alt;
+      img.src=b.dataset.full; img.alt=i.alt;
       var fc=b.parentElement.querySelector('figcaption'); cap.textContent=fc?fc.textContent:'';
       if(lb.showModal) lb.showModal();
     });
@@ -488,10 +356,9 @@ dialog button{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right
   lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
   document.querySelectorAll('.copy').forEach(function(b){
     b.addEventListener('click',function(){
-      var t=b.dataset.copy;
       function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600)}
-      try{navigator.clipboard.writeText(t).then(done,function(){sel()})}catch(e){sel()}
       function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+      try{navigator.clipboard.writeText(b.dataset.copy).then(done,sel)}catch(e){sel()}
     });
   });
 })();
